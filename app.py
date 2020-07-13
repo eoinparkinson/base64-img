@@ -19,22 +19,16 @@ def home():
     else:
         return "Error: No url field provided. Please specify a url using ?url=www.your-url-here.com"
 
-#Taking in two lists, and outputting a graph in image base64 format.
+#Taking in two lists, and outputting a graph in image base64 format.(in progress)
 @app.route("/api/v1/graph-img")
 def graphImage():
-    if "xVal" and "yVal" in request.args:
-        try:
-            tmpXVal = str(request.args['xVal'])
-            tmpYVal = str(request.args['yVal'])
-            return ("xVal = " + tmpXVal + " and yVal = " + tmpYVal)
-        except:
-            return "Error: This is the 'except' issue."
-    else:
-        return "Error: No parameters provided."
+    tmpXVal = str(request.args.get("xVal"))
+    tmpYVal = str(request.args.get("yVal"))
+    tmpGraphType = str(request.args.get("graphType"))
 
-
+    return (tmpXVal+tmpYVal+tmpGraphType)
 
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
