@@ -12,7 +12,7 @@ def home():
         try:
 
             url = str(request.args['url'])
-            time.sleep(2)
+            #time.sleep(2)
             return base64.b64encode(requests.get(url).content)
         except:
             return "Error: Invalid url. Url must be a direct link to image."
