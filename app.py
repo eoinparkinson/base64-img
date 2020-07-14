@@ -11,13 +11,9 @@ app = Flask(__name__)
 def home():
     if 'url' in request.args:
         try:
-            if str(request.args.get("encodeURL")) == "true":
-                query = urlparse(str(request.args['url']))
-                #time.sleep(2)
-                return base64.b64encode(requests.get(query).content)
-            else:
-                query = str(request.args['url'])
-                return base64.b64encode(requests.get(query).content)
+            query = str(request.args['url'])
+            #time.sleep(2)
+            return base64.b64encode(requests.get(query).content)
         except:
             return "Error: Invalid url. Url must be a direct link to image."
     else:
