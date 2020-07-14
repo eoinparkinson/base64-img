@@ -2,6 +2,7 @@ import base64
 import requests
 from flask import Flask, request
 import time
+from urllib.parse import urlparse
 
 app = Flask(__name__)
 
@@ -11,9 +12,9 @@ def home():
     if 'url' in request.args:
         try:
 
-            url = str(request.args['url'])
+            query = urlparse(str(request.args['url']))
             #time.sleep(2)
-            return base64.b64encode(requests.get(url).content)
+            return base64.b64encode(requests.get(query).content)
         except:
             return "Error: Invalid url. Url must be a direct link to image."
     else:
